@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'build'))); // this allows express t
 // This decodes the jwt token, and assigns
 // the user information to req.user
 // api routes must be before the "catch all" route
-app.post('/package/rate', UPSAPI.upsRate )
+app.post('/package/rate', UPSAPI.upsRate)
 
 // "catch all" route
 app.get('/*', function(req, res) {
