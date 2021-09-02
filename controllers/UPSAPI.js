@@ -27,11 +27,3 @@ async function upsRate(req, res) {
 module.exports = {
     upsRate
 };
-
-
-// "Request":{
-//     "SubVersion":"1703",
-//     "TransactionReference":{
-//        "CustomerContext":" "
-//     }
-//  },

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ShippingAddress from './ShippingAddress'
-import { Form, Col, Button, InputGroup, FormControl } from "react-bootstrap";
+import { Form, Col, Row, Button, InputGroup, FormControl } from "react-bootstrap";
 
 
 function PackageInput({
-  Shipment = intialShipment = {
+  Shipment : initialShipment = {
     ShipmentRatingOptions:{
-      UserLevelDiscountIndicator: FALSE
+      UserLevelDiscountIndicator: "FALSE"
    },
    Shipper: {},
    ShipTo: {},
@@ -45,13 +45,15 @@ function PackageInput({
   }
 }) {
   const [Shipment, setShipment] = useState(initialShipment);
+  const [Shipper, setShipper] = useState(Shipment.Shipper)
   const [ShipFrom, setShipFrom] = useState(Shipment.ShipFrom)
+  const [ShipTo, setShipTo] = useState(Shipment.ShipTo)
 
 
 
-	const setDropoff = (dropoff) => {
-		setShipment(j => ({ ...j, ShipTo: { ...j.dropoff, ...dropoff }}));
-	}
+	// const setDropoff = (dropoff) => {
+	// 	setShipment(j => ({ ...j, ShipTo: { ...j.dropoff, ...dropoff }}));
+	// }
 
   
   return (
@@ -59,15 +61,24 @@ function PackageInput({
         <Form>
 				<Row>
 					<Col>
-						<h3>Shipping Info</h3>
 						<Form.Label>Ship From</Form.Label>
-						<ShippingAddress key="shipfrom" shipfrom={Shipment.ShipFrom} onChange={setShipFrom} />
+						<ShippingAddress key="shipfrom" shippingInfo={Shipment.ShipFrom} onChange={setShipFrom} />
+					</Col>
+				</Row>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          <Row>
+					<Col>
+						<Form.Label>Ship To</Form.Label>
+						<ShippingAddress key="shipto" shippingInfo={Shipment.ShipTo} onChange={setShipFrom} />
 					</Col>
 				</Row>
           <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>
+
 
       </div>
     );
