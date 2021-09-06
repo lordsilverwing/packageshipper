@@ -21,7 +21,7 @@ async function upsRate(req, res) {
         
     });
     const results = await response.json();
-    res.json(results)
+    return res.json(results)
 }
 
 module.exports = {
