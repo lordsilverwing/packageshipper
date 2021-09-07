@@ -1,35 +1,43 @@
 import React, {useState, useEffect} from 'react'
 import { Form, Col, Row } from "react-bootstrap";
 
-function ShippingAddress({
-    shippingInfo: initialShippingInfo = {
-        Name: "",
-        Address:{
-            AddressLine:"",
-                Street:"",
-                City:"",
-                StateProvinceCode:"",
-                PostalCode:"",
-                CountryCode:"US"
-        }
-    },
-    onChange = () => {}
-},
-
-) 
+function ShippingAddress(props) 
 {
+    const {
+        shippingInfo: initialShippingInfo = {
+            Name: "",
+            Address:{
+                AddressLine:"",
+                    Street:"",
+                    City:"",
+                    StateProvinceCode:"",
+                    PostalCode:"",
+                    CountryCode:"US"
+            }
+        },
+        onChange = () => {}
+    } = props
     const [Name, setName] = useState(initialShippingInfo.Name)
-    const [Street, setStreet] = useState(initialShippingInfo.Address.Street)
+    const [Street, setStreet] = useState(initialShippingInfo.Address.Street || initialShippingInfo.Address.AddressLine)
     const [City, setCity] = useState(initialShippingInfo.Address.City)
     const [StateProvinceCode, setStateProvinceCode] = useState(initialShippingInfo.Address.StateProvinceCode)
     const [PostalCode, setPostalCode] = useState(initialShippingInfo.Address.PostalCode)
     const [CountryCode, setCountryCode] = useState(initialShippingInfo.Address.CountryCode)
 
     useEffect(()=>{
+        setName(initialShippingInfo.Name)
+        setStreet(initialShippingInfo.Address.Street  || initialShippingInfo.Address.AddressLine)
+        setCity(initialShippingInfo.Address.City)
+        setStateProvinceCode(initialShippingInfo.Address.StateProvinceCode)
+        setPostalCode(initialShippingInfo.Address.PostalCode)
+        setCountryCode(initialShippingInfo.Address.CountryCode)
+      }, [initialShippingInfo])
+
+    useEffect(()=>{
         onChange({
             Name,
             Address : {
-                Street,
+                AddressLine: Street,
                 City,
                 StateProvinceCode,
                 PostalCode,
@@ -49,7 +57,7 @@ function ShippingAddress({
         <Row>
             <Form.Group as={Col}>
                 <Form.Label>Street</Form.Label>
-                <Form.Control placeholder="123 Aspent St" type="text" value={Street} onChange={(evt) => setStreet(evt.target.value)} />
+                <Form.Control placeholder="123 Aspen St" type="text" value={Street} onChange={(evt) => setStreet(evt.target.value)} />
             </Form.Group>
         </Row>
         <Row>

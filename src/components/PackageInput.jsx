@@ -226,7 +226,7 @@ function PackageInput({
         {!!apiError && <div>{apiError}</div>}
         </div>
       <Row xs={2} md={4}>
-        {!!rateData && rateData.map((value, index) => <Col><div key={`spa-${index}`}><RateData {...value}/></div></Col> )
+        {!!rateData && rateData.map((value, index) => <Col key={`spa-${index}`}><div ><RateData {...value}/></div></Col> )
         }
       </Row>
     </>
