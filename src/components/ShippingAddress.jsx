@@ -67,7 +67,7 @@ function ShippingAddress({
             </Form.Group>
             <Form.Group as={Col}>
                 <Form.Label>Country</Form.Label>
-                <Form.Control placeholder="US" type="text" value={CountryCode} onChange={(evt) => setCountryCode(evt.target.value)} />
+                <Form.Control disabled placeholder="US" type="text" value={CountryCode} onChange={(evt) => setCountryCode(evt.target.value)} />
             </Form.Group>
             
         </Row>
