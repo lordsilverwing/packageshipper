@@ -36,12 +36,15 @@ async function upsRate(req, res) {
         
     });
     const results = await response.json();
-    results.RateResponse.RatedShipment = results.RateResponse.RatedShipment.map(r => ({
+    if (!!results && !!results.response){
+        return res.json(results)
+    }else {
+        results.RateResponse.RatedShipment = results.RateResponse.RatedShipment.map(r => ({
         ...r,
         Service: getServiceDescription(r.Service) 
         }))
-    
-    return res.json(results)
+        return res.json(results)
+    }
 }
 
 module.exports = {

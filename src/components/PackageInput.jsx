@@ -63,6 +63,7 @@ function PackageInput({
   const handleTest = (value) => {
     setLoading(true)
     setShipper(value.Shipper)
+    setShipFrom(value.Shipper)
     setShipTo(value.ShipTo)
     setServiceCode(value.Service.Code)
     setPackagingCode(value.Package.PackagingType.Code)
@@ -132,7 +133,6 @@ function PackageInput({
       setApiError(result.response.errors[0].message)
     }
     
-    // add result to frontend
     setLoading(false)
   }
 
@@ -151,12 +151,14 @@ function PackageInput({
                   </Col>
                 </Row>
               </Tab>
-            {/* <Row>
-              <Col>
-                <Form.Label>Ship From</Form.Label>
-                <ShippingAddress key="shipfrom" shippingInfo={ShipFrom} onChange={setShipFrom} />
-              </Col>
-            </Row> */}
+              <Tab eventKey="shipfrom" title="Ship From"> 
+                <Row>
+                  <Col>
+                    <Form.Label>Ship From (Ignore if Same as Shipper)</Form.Label>
+                    <ShippingAddress key="shipfrom" shippingInfo={ShipFrom} onChange={setShipFrom} />
+                  </Col>
+                </Row>
+              </Tab>
             <Tab eventKey="shipto" title="Ship To">
               <Row>
                 <Col>
